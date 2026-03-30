@@ -81,7 +81,7 @@ export default function TestimonialSection() {
               <div className="flex items-center gap-3 pt-2 border-t border-[rgb(var(--color-border))]">
                 <div className="relative w-[40px] h-[40px] rounded-full overflow-hidden border border-[rgb(var(--color-border))]">
                   <Image
-                    src={cloudinaryImage(item.image, "avatar")}
+                    src={cloudinaryImage(item.image, "thumb")}
                     alt={`Testimoni ${item.name} layanan bidan ke rumah`}
                     fill
                     sizes="40px"
