@@ -142,7 +142,7 @@ body {
 .body-lg {
   font-size: 15.5px;
   line-height: 1.75;
-  color: rgb(var(--color-text));
+  
 }
 
 .body {

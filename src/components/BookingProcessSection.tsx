@@ -2,111 +2,129 @@
 
 import Link from "next/link";
 
-export default function BookingProcessSection() {
+type Step = {
+  title: string;
+  desc: string;
+};
 
-  const steps = [
+export default function BookingProcessSection() {
+  const steps: Step[] = [
     {
-      title: "Hubungi kami melalui WhatsApp",
-      desc: "Tim kami siap merespons pertanyaan dan membantu Anda memilih layanan yang sesuai.",
+      title: "Hubungi via WhatsApp",
+      desc: "Tim kami siap merespons cepat dan membantu memilih layanan bidan homecare yang sesuai kebutuhan.",
     },
     {
-      title: "Konsultasikan kebutuhan layanan",
-      desc: "Sampaikan kondisi ibu atau bayi agar bidan dapat mempersiapkan penanganan yang tepat.",
+      title: "Konsultasi kondisi ibu & bayi",
+      desc: "Sampaikan kondisi kesehatan agar bidan dapat mempersiapkan penanganan yang tepat sebelum datang.",
     },
     {
-      title: "Tim bidan datang ke rumah Anda",
-      desc: "Bidan profesional kami akan datang sesuai jadwal untuk memberikan pelayanan kesehatan.",
+      title: "Bidan datang ke rumah",
+      desc: "Tenaga bidan profesional akan datang sesuai jadwal dengan peralatan medis lengkap dan steril.",
     },
     {
-      title: "Dapatkan perawatan yang aman dan nyaman",
-      desc: "Nikmati pelayanan kebidanan dengan standar medis yang aman langsung di rumah.",
+      title: "Perawatan aman & nyaman",
+      desc: "Nikmati layanan kebidanan langsung di rumah dengan standar medis yang aman untuk ibu dan bayi.",
     },
   ];
 
   return (
-    <section className="section bg-[rgb(var(--color-bg))]">
+    <section
+      className="section bg-[rgb(var(--color-bg))]"
+      aria-labelledby="booking-process-heading"
+    >
       <div className="container-main">
-
         {/* HEADER */}
-        <div className="max-w-[560px] mb-10">
-
-          <p className="text-[10px] uppercase tracking-[1.6px] text-[rgb(var(--color-primary))] font-medium mb-3">
-            Proses Layanan
+        <div className="max-w-[560px] mb-12">
+          <p className="caption uppercase tracking-[1.6px] text-primary mb-3">
+            Proses Layanan Bidan On Call
           </p>
 
-          <h2 className="text-[20px] md:text-[22px] font-semibold leading-[1.35] text-[rgb(var(--color-dark))]">
-            Cara Menggunakan Layanan
+          <h2 id="booking-process-heading" className="h2 text-[rgb(var(--color-dark))]">
+            Cara Booking Layanan Bidan ke Rumah
           </h2>
 
+          <p className="body mt-3 text-[rgb(var(--color-muted))]">
+            Proses pemesanan layanan homecare bidan sangat mudah, cepat, dan
+            dirancang untuk kenyamanan ibu hamil, ibu nifas, dan bayi.
+          </p>
         </div>
 
         {/* STEPS */}
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-
+        <div className="relative grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step, i) => (
             <div
               key={i}
               className="
                 relative
-                border border-[rgb(var(--color-border))]
-                rounded-[var(--radius-lg)]
-                p-4
-                bg-[rgb(var(--color-surface))]
-                transition-all duration-200
-                hover:shadow-[var(--shadow-elevated)]
-                hover:border-[rgb(var(--color-border-strong))]
+                card-premium
+                p-[18px]
+                flex flex-col
+                gap-3
               "
             >
+              {/* connector line (desktop) */}
+              {i !== steps.length - 1 && (
+                <div
+                  className="
+                    hidden lg:block
+                    absolute top-[22px] right-[-50%]
+                    w-full h-[1px]
+                    bg-[rgb(var(--color-border))]
+                  "
+                />
+              )}
 
               {/* number */}
               <div
                 className="
-                  w-[28px] h-[28px]
+                  w-[30px] h-[30px]
                   rounded-full
                   flex items-center justify-center
                   text-[12px] font-semibold
                   bg-[rgb(var(--color-primary))]
                   text-[rgb(var(--color-white))]
-                  mb-3
+                  shadow-[var(--shadow-soft)]
                 "
               >
                 {i + 1}
               </div>
 
               {/* title */}
-              <h3 className="text-[14px] font-semibold leading-[1.45] text-[rgb(var(--color-dark))] mb-2">
+              <h3 className="h3 text-[rgb(var(--color-dark))]">
                 {step.title}
               </h3>
 
-              {/* description */}
-              <p className="text-[13px] leading-[1.6] text-[rgb(var(--color-muted))]">
+              {/* desc */}
+              <p className="body text-[rgb(var(--color-muted))]">
                 {step.desc}
               </p>
-
             </div>
           ))}
-
         </div>
 
         {/* CTA */}
-        <div className="mt-10">
-
+        <div className="mt-12 flex flex-col sm:flex-row sm:items-center gap-4">
           <Link
             href="/kontak"
-            className="
-              inline-flex
-              items-center
-              text-[13px]
-              font-medium
-              text-[rgb(var(--color-primary))]
-              hover:underline
-            "
+            className="btn-primary inline-flex items-center justify-center"
           >
-            Hubungi kami untuk booking layanan →
+            Booking Sekarang
           </Link>
 
+          <Link
+            href="/layanan"
+            className="btn-outline inline-flex items-center justify-center"
+          >
+            Lihat Semua Layanan
+          </Link>
         </div>
 
+        {/* SEO hidden content */}
+        <div className="sr-only">
+          Layanan bidan on call ke rumah meliputi pemeriksaan kehamilan,
+          perawatan ibu nifas, perawatan bayi baru lahir, hingga tindakan medis
+          ringan dengan tenaga bidan profesional berpengalaman.
+        </div>
       </div>
     </section>
   );

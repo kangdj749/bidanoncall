@@ -4,40 +4,46 @@ import Image from "next/image";
 import Link from "next/link";
 import { cloudinaryImage } from "@/lib/cloudinaryImage";
 
-export default function ServicesSection() {
+type ServiceItem = {
+  title: string;
+  desc: string;
+  href: string;
+  image: string;
+};
 
-  const services = [
+export default function ServicesSection() {
+  const services: ServiceItem[] = [
     {
       title: "Paket Perawatan Ibu Hamil",
-      desc: "Pendampingan kesehatan selama masa kehamilan agar ibu dan janin tetap sehat hingga persalinan.",
+      desc: "Pendampingan kesehatan selama kehamilan agar ibu dan janin tetap sehat hingga persalinan.",
       href: "/layanan/paket-hamil",
       image:
         "https://res.cloudinary.com/de7fqcvpf/image/upload/v1773632861/muslim-doula_qih1wg.jpg",
     },
     {
       title: "Doula Persalinan",
-      desc: "Pendampingan persalinan secara emosional dan fisik untuk membantu ibu menjalani proses melahirkan dengan lebih tenang.",
+      desc: "Pendampingan emosional dan fisik agar proses melahirkan lebih tenang dan nyaman.",
       href: "/layanan/doula-persalinan",
       image:
         "https://res.cloudinary.com/de7fqcvpf/image/upload/v1773632861/muslim-doula_qih1wg.jpg",
     },
     {
       title: "Paket Perawatan Nifas",
-      desc: "Perawatan khusus untuk ibu setelah melahirkan agar proses pemulihan berjalan optimal.",
+      desc: "Perawatan ibu pasca melahirkan agar proses pemulihan berjalan optimal.",
       href: "/layanan/perawatan-nifas",
       image:
         "https://res.cloudinary.com/de7fqcvpf/image/upload/v1773632861/muslim-doula_qih1wg.jpg",
     },
     {
       title: "Perawatan Bayi",
-      desc: "Perawatan bayi baru lahir oleh tenaga bidan berpengalaman.",
+      desc: "Perawatan bayi baru lahir oleh bidan berpengalaman langsung di rumah.",
       href: "/layanan/perawatan-bayi",
       image:
         "https://res.cloudinary.com/de7fqcvpf/image/upload/v1773632861/muslim-doula_qih1wg.jpg",
     },
     {
-      title: "Jasa Infus ke Rumah",
-      desc: "Layanan infus medis langsung di rumah untuk membantu pemulihan kesehatan.",
+      title: "Infus ke Rumah",
+      desc: "Layanan infus medis di rumah untuk membantu pemulihan kesehatan ibu.",
       href: "/layanan/infus-rumah",
       image:
         "https://res.cloudinary.com/de7fqcvpf/image/upload/v1773632861/muslim-doula_qih1wg.jpg",
@@ -45,74 +51,93 @@ export default function ServicesSection() {
   ];
 
   return (
-    <section className="section bg-[rgb(var(--color-bg))]">
+    <section
+      className="section bg-[rgb(var(--color-bg))]"
+      aria-labelledby="layanan-bidan-on-call"
+    >
       <div className="container-main">
 
         {/* HEADER */}
         <div className="max-w-[560px] mb-10">
-
           <p className="text-[10px] uppercase tracking-[1.6px] text-[rgb(var(--color-primary))] font-medium mb-3">
-            Layanan
+            Layanan Bidan On Call
           </p>
 
-          <h2 className="text-[20px] md:text-[22px] font-semibold leading-[1.35] text-[rgb(var(--color-dark))]">
-            Layanan Homecare Kebidanan
+          <h2
+            id="layanan-bidan-on-call"
+            className="h2 text-[rgb(var(--color-dark))]"
+          >
+            Layanan Homecare Kebidanan untuk Ibu & Bayi
           </h2>
 
+          <p className="caption mt-2">
+            Berbagai layanan kesehatan ibu hamil, persalinan, dan bayi baru lahir
+            langsung di rumah dengan standar medis profesional.
+          </p>
         </div>
 
-        {/* SERVICES GRID */}
+        {/* GRID */}
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
 
-          {services.map((service, i) => (
+          {services.map((service) => (
             <article
-              key={i}
+              key={service.href}
               className="
+                group
+                flex flex-col
                 border border-[rgb(var(--color-border))]
                 rounded-[var(--radius-lg)]
                 overflow-hidden
                 bg-[rgb(var(--color-surface))]
-                transition-all duration-200
+                transition-all duration-300
                 hover:shadow-[var(--shadow-elevated)]
                 hover:border-[rgb(var(--color-border-strong))]
               "
             >
 
               {/* IMAGE */}
-              <div className="relative w-full h-[160px] bg-[rgb(var(--color-soft))]">
-
+              <div className="relative w-full h-[150px] bg-[rgb(var(--color-soft))] overflow-hidden">
                 <Image
                   src={cloudinaryImage(service.image, "card")}
-                  alt={service.title}
+                  alt={`Layanan ${service.title} oleh bidan ke rumah`}
                   fill
                   sizes="(max-width:768px) 100vw, 360px"
-                  className="object-cover"
+                  className="
+                    object-cover
+                    transition-transform duration-500
+                    group-hover:scale-[1.04]
+                  "
                 />
-
               </div>
 
               {/* CONTENT */}
-              <div className="p-4">
+              <div className="flex flex-col flex-1 p-4">
 
-                <h3 className="text-[15px] font-semibold leading-[1.4] text-[rgb(var(--color-dark))] mb-2">
+                <h3 className="h3 text-[rgb(var(--color-dark))] mb-2">
                   {service.title}
                 </h3>
 
-                <p className="text-[13px] leading-[1.6] text-[rgb(var(--color-muted))] mb-4">
+                <p className="text-[13px] leading-[1.6] text-[rgb(var(--color-muted))] mb-4 line-clamp-3">
                   {service.desc}
                 </p>
 
-                <Link
-                  href={service.href}
-                  className="
-                    text-[12px]
-                    font-medium
-                    text-[rgb(var(--color-primary))]
-                    hover:underline
-                  "
-                >
-                  Lihat layanan →
-                </Link>
+                {/* CTA */}
+                <div className="mt-auto">
+                  <Link
+                    href={service.href}
+                    className="
+                      inline-flex items-center gap-1
+                      text-[12px]
+                      font-medium
+                      text-[rgb(var(--color-primary))]
+                      transition-all
+                      hover:gap-2
+                    "
+                  >
+                    Lihat layanan
+                    <span className="text-[14px]">→</span>
+                  </Link>
+                </div>
 
               </div>
 

@@ -3,99 +3,117 @@
 import Image from "next/image";
 import { cloudinaryImage } from "@/lib/cloudinaryImage";
 
-export default function SolutionSection() {
+type ServiceItem = {
+  id: number;
+  text: string;
+};
 
+export default function SolutionSection() {
   const image =
     "https://res.cloudinary.com/de7fqcvpf/image/upload/v1773632861/muslim-doula_qih1wg.jpg";
 
-  const services = [
-    "pemeriksaan kehamilan",
-    "pendampingan persalinan",
-    "perawatan ibu nifas",
-    "perawatan bayi baru lahir",
-    "layanan infus medis",
-    "tindakan medis ringan",
+  const services: ServiceItem[] = [
+    { id: 1, text: "Pemeriksaan kehamilan di rumah" },
+    { id: 2, text: "Pendampingan persalinan profesional" },
+    { id: 3, text: "Perawatan ibu nifas" },
+    { id: 4, text: "Perawatan bayi baru lahir" },
+    { id: 5, text: "Layanan infus medis" },
+    { id: 6, text: "Tindakan medis ringan" },
   ];
 
   return (
-    <section className="section bg-[rgb(var(--color-soft))]">
+    <section
+      className="section bg-[rgb(var(--color-soft))]"
+      aria-labelledby="solution-heading"
+    >
       <div className="container-main">
 
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-10 md:gap-14 items-center">
 
-          {/* IMAGE */}
-          <div className="relative w-full h-[240px] md:h-[320px] overflow-hidden rounded-[var(--radius-lg)] border border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface))]">
+          {/* =========================
+              IMAGE
+          ========================== */}
+          <div className="relative w-full h-[240px] md:h-[340px] overflow-hidden rounded-[var(--radius-lg)] border border-[rgb(var(--color-border))] bg-[rgb(var(--color-surface))]">
 
             <Image
               src={cloudinaryImage(image, "natural")}
-              alt="Layanan bidan datang ke rumah"
+              alt="Layanan bidan profesional datang ke rumah untuk perawatan ibu dan bayi"
               fill
               sizes="(max-width:768px) 100vw, 520px"
               className="object-cover"
+              priority={false}
             />
+
+            {/* subtle overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent pointer-events-none" />
 
           </div>
 
-          {/* CONTENT */}
-          <div className="max-w-[520px]">
+          {/* =========================
+              CONTENT
+          ========================== */}
+          <div className="max-w-[540px]">
 
-            {/* label */}
+            {/* LABEL */}
             <p className="text-[10px] uppercase tracking-[1.6px] text-[rgb(var(--color-primary))] font-medium mb-3">
-              Solusi Perawatan Ibu & Bayi
+              Solusi Perawatan Ibu & Bayi di Rumah
             </p>
 
-            {/* headline */}
-            <h2 className="text-[20px] md:text-[22px] font-semibold leading-[1.35] text-[rgb(var(--color-dark))] mb-4">
-              Solusi Praktis dengan
+            {/* HEADLINE */}
+            <h2
+              id="solution-heading"
+              className="text-[22px] md:text-[26px] font-semibold leading-[1.3] tracking-[-0.01em] text-[rgb(var(--color-dark))] mb-4"
+            >
+              Perawatan Lebih Nyaman dengan
               <span className="block">
-                Layanan Bidan ke Rumah
+                Layanan Bidan On Call ke Rumah
               </span>
             </h2>
 
-            {/* intro text */}
-            <p className="text-[13px] leading-[1.65] text-[rgb(var(--color-muted))] mb-6">
-              Kami menghadirkan layanan homecare kebidanan yang memungkinkan
-              Anda mendapatkan perawatan kesehatan langsung di rumah tanpa harus
-              datang ke fasilitas kesehatan.
+            {/* DESCRIPTION */}
+            <p className="body text-[rgb(var(--color-muted))] mb-4">
+              Kini Anda tidak perlu repot datang ke klinik atau rumah sakit.
+              Layanan homecare kebidanan memungkinkan ibu dan bayi mendapatkan
+              perawatan langsung di rumah dengan lebih nyaman dan aman.
             </p>
 
-            <p className="text-[13px] leading-[1.65] text-[rgb(var(--color-muted))] mb-6">
-              Dengan layanan Bidan On Call, tim bidan profesional kami siap
-              membantu memberikan berbagai pelayanan kesehatan ibu dan bayi.
+            <p className="body text-[rgb(var(--color-muted))] mb-6">
+              Tim bidan profesional kami siap memberikan berbagai layanan
+              kesehatan ibu dan anak dengan pendekatan yang personal,
+              hangat, dan sesuai kebutuhan.
             </p>
 
-            {/* services */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+            {/* =========================
+                SERVICE GRID (2 COLUMN)
+            ========================== */}
+            <div className="grid sm:grid-cols-2 gap-3 mb-6">
 
-              {services.map((service, i) => (
+              {services.map((service) => (
                 <div
-                  key={i}
+                  key={service.id}
                   className="
-                    flex items-start gap-2
-                    border border-[rgb(var(--color-border))]
-                    rounded-[var(--radius-md)]
-                    p-3
-                    bg-[rgb(var(--color-surface))]
-                    text-[13px]
-                    text-[rgb(var(--color-text))]
-                    leading-[1.6]
+                    card-premium
+                    !p-4
+                    flex items-start gap-3
                   "
                 >
+                  {/* bullet */}
+                  <span className="mt-[6px] w-[6px] h-[6px] rounded-full bg-[rgb(var(--color-primary))]" />
 
-                  <span className="w-[6px] h-[6px] mt-[6px] rounded-full bg-[rgb(var(--color-primary))]" />
-
-                  <span>{service}</span>
-
+                  {/* text */}
+                  <span className="text-[13px] leading-[1.6] text-[rgb(var(--color-text))]">
+                    {service.text}
+                  </span>
                 </div>
               ))}
 
             </div>
 
-            {/* closing */}
-            <p className="text-[13px] leading-[1.65] text-[rgb(var(--color-muted))]">
+            {/* CLOSING */}
+            <p className="body text-[rgb(var(--color-muted))]">
               Semua layanan dilakukan dengan standar medis yang aman dan
-              profesional sehingga ibu dan bayi mendapatkan perawatan terbaik
-              selama masa kehamilan hingga setelah persalinan.
+              profesional, sehingga ibu dan bayi mendapatkan perawatan terbaik
+              sejak masa kehamilan hingga setelah persalinan.
             </p>
 
           </div>

@@ -10,13 +10,20 @@ export default function HeroSection() {
     "https://res.cloudinary.com/de7fqcvpf/image/upload/v1773630914/babyandmom_rhhoq2.jpg";
 
   return (
-    <section className="relative min-h-[420px] md:min-h-[540px] flex items-center overflow-hidden bg-[rgb(var(--color-bg))]">
-
-      {/* Background Image */}
+    <section
+      className="
+        relative 
+        min-h-[460px] md:min-h-[620px] 
+        flex items-center 
+        overflow-hidden
+        bg-[rgb(var(--color-bg))]
+      "
+    >
+      {/* Background */}
       <div className="absolute inset-0">
         <Image
           src={cloudinaryImage(heroImage, "banner")}
-          alt="Layanan bidan ke rumah untuk ibu hamil dan bayi"
+          alt="Layanan bidan ke rumah untuk ibu hamil, ibu nifas, dan bayi baru lahir"
           fill
           priority
           sizes="100vw"
@@ -24,82 +31,119 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* Soft overlay */}
-      <div className="absolute inset-0 bg-[rgb(var(--color-dark))]/45" />
+      {/* Overlay Depth */}
+      <div className="absolute inset-0 bg-[rgb(var(--color-dark))]/55" />
 
-      {/* Bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-b from-transparent to-[rgb(var(--color-bg))]" />
+      {/* Gradient Soft Fade */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[rgb(var(--color-dark))]/70 via-[rgb(var(--color-dark))]/40 to-transparent" />
 
-      <div className="container-main relative z-10 py-12 md:py-16">
+      {/* Bottom Blend */}
+      <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-b from-transparent to-[rgb(var(--color-bg))]" />
+
+      <div className="container-main relative z-10 py-14 md:py-20">
 
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55 }}
-          className="max-w-[520px]"
+          transition={{ duration: 0.6 }}
+          className="max-w-[560px]"
         >
 
-          {/* Micro label */}
-          <p className="text-[9px] tracking-[1.6px] uppercase font-medium text-[rgb(var(--color-white))]/70 mb-3">
-            Homecare Kebidanan
-          </p>
+          {/* Badge */}
+          <div
+            className="
+              inline-flex items-center gap-2
+              px-3 py-1.5
+              mb-4
+              text-[11px] font-medium
+              rounded-full
+              bg-[rgb(var(--color-white))]/10
+              text-[rgb(var(--color-white))]
+              backdrop-blur-sm
+              border border-[rgb(var(--color-white))]/15
+            "
+          >
+            Homecare Bidan Profesional
+          </div>
 
           {/* Headline */}
-          <h1 className="text-[20px] md:text-[28px] font-semibold leading-[1.35] tracking-[0.2px] text-[rgb(var(--color-white))] mb-4">
-            Bidan On Call – Layanan Bidan ke Rumah
-            <span className="block">
-              untuk Ibu Hamil dan Bayi
+          <h1 className="h1 text-[rgb(var(--color-white))] mb-4">
+            Layanan Bidan ke Rumah
+            <span className="block text-[rgb(var(--color-white))]/90">
+              untuk Ibu Hamil & Bayi Baru Lahir
             </span>
           </h1>
 
           {/* Subheadline */}
-          <p className="text-[12px] md:text-[13px] leading-[1.65] text-[rgb(var(--color-white))]/85 mb-6">
-            Nikmati perawatan ibu hamil, ibu nifas, dan bayi baru lahir langsung 
-            di rumah Anda oleh tenaga bidan profesional yang berpengalaman 
-            memberikan pelayanan kesehatan ibu dan anak secara aman dan nyaman.
+          <p className="body-lg text-[rgb(var(--color-white))]/85 mb-7">
+            Nikmati layanan <strong>bidan on call</strong> langsung ke rumah Anda 
+            untuk perawatan ibu hamil, nifas, hingga bayi baru lahir. 
+            Ditangani oleh tenaga profesional yang berpengalaman, 
+            aman, nyaman, dan lebih personal.
           </p>
 
           {/* CTA */}
-<div className="flex gap-3">
+          <div className="flex flex-wrap gap-3">
 
-  {/* Primary CTA */}
-    <Link
-      href="/kontak#consultation-form"
-      className="
-        px-5 py-2
-        text-[11px]
-        font-medium
-        rounded-[var(--radius-sm)]
-        bg-[rgb(var(--color-primary))]
-        text-[rgb(var(--color-white))]
-        transition-all duration-200
-        hover:bg-[rgb(var(--color-primary))]/90
-      "
-    >
-      Konsultasi Sekarang
-    </Link>
+            <Link
+              href="/kontak#consultation-form"
+              className="btn-primary"
+            >
+              Konsultasi Sekarang
+            </Link>
 
-    {/* Secondary CTA */}
-    <Link
-      href="/layanan"
-      className="
-        px-5 py-2
-        text-[11px]
-        font-medium
-        rounded-[var(--radius-sm)]
-        border
-        border-[rgb(var(--color-white))]/35
-        text-[rgb(var(--color-white))]
-        transition-all duration-200
-        hover:bg-[rgb(var(--color-white))]/10
-      " prefetch
-    >
-      Booking Layanan
-    </Link>
+            <Link
+              href="/layanan"
+              className="
+                px-5 py-[11px]
+                text-[13px] font-medium
+                rounded-[var(--radius-md)]
+                border
+                border-[rgb(var(--color-white))]/30
+                text-[rgb(var(--color-white))]
+                transition-all duration-200
+                hover:bg-[rgb(var(--color-white))]/10
+              "
+              prefetch
+            >
+              Lihat Layanan
+            </Link>
 
-  </div>
+          </div>
+
+          {/* Trust mini info */}
+          <div className="mt-6 flex flex-wrap gap-4 text-[11.5px] text-[rgb(var(--color-white))]/70">
+
+            <span>✔ Bidan berpengalaman</span>
+            <span>✔ Homecare langsung ke rumah</span>
+            <span>✔ Pendampingan personal</span>
+
+          </div>
 
         </motion.div>
+
+        {/* Optional Right Card (desktop only for premium feel) */}
+        <div className="hidden lg:block absolute right-[40px] bottom-[40px]">
+
+          <div
+            className="
+              w-[260px]
+              p-5
+              rounded-[var(--radius-lg)]
+              bg-[rgb(var(--color-white))]/90
+              backdrop-blur-md
+              border border-[rgb(var(--color-border))]
+              shadow-[var(--shadow-elevated)]
+            "
+          >
+            <p className="text-[13px] text-[rgb(var(--color-text))] leading-[1.6]">
+              Pendampingan ibu hamil & bayi dengan pendekatan yang lebih hangat, 
+              profesional, dan berfokus pada kenyamanan ibu.
+            </p>
+          </div>
+
+        </div>
+
       </div>
     </section>
   );
