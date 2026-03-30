@@ -1,28 +1,82 @@
+// ------------------------------------------------------
+// SOLUTION SECTION — Value Proposition (Enterprise SaaS)
+// Bidan On Call Landing Page
+// ------------------------------------------------------
+
+type ServiceItem = {
+  id: string;
+  title: string;
+};
+
+const services: ServiceItem[] = [
+  {
+    id: "check",
+    title: "Pemeriksaan kondisi ibu dan janin secara menyeluruh",
+  },
+  {
+    id: "monitor",
+    title: "Pemantauan perkembangan kehamilan secara berkala",
+  },
+  {
+    id: "consult",
+    title: "Konsultasi kesehatan personal langsung di rumah",
+  },
+  {
+    id: "education",
+    title: "Edukasi persiapan persalinan yang terarah",
+  },
+];
+
 export default function SolutionSection() {
-  const services: string[] = [
-    "Pemeriksaan kondisi ibu dan janin",
-    "Pemantauan perkembangan kehamilan",
-    "Konsultasi kesehatan personal",
-    "Edukasi persiapan persalinan",
-  ];
-
   return (
-    <section className="section">
-      <div className="container-main space-y-6">
+    <section
+      className="section"
+      aria-labelledby="solution-heading"
+    >
+      <div className="container-main">
 
-        <h2 className="h2 text-[rgb(var(--color-dark))]">
-          Solusi Praktis: Bidan Datang ke Rumah Anda
-        </h2>
+        {/* HEADER */}
+        <div className="max-w-[720px] space-y-3">
+          <h2
+            id="solution-heading"
+            className="h2 text-[rgb(var(--color-dark))]"
+          >
+            Solusi Praktis: Layanan Bidan Datang ke Rumah
+          </h2>
 
-        <p className="body text-[rgb(var(--color-muted))] max-w-[640px]">
-          Anda bisa mendapatkan perawatan langsung di rumah dengan nyaman dan aman.
-        </p>
+          <p className="body text-[rgb(var(--color-muted))]">
+            Nikmati layanan homecare bidan profesional yang membantu memastikan
+            kesehatan ibu dan janin tetap terpantau dengan nyaman, aman, dan
+            tanpa harus keluar rumah.
+          </p>
+        </div>
 
-        <div className="grid sm:grid-cols-2 gap-4">
+        {/* GRID */}
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
           {services.map((item) => (
-            <div key={item} className="card-premium text-[12px]">
-              {item}
-            </div>
+            <article
+              key={item.id}
+              className="
+                card-premium
+                flex items-start gap-3
+                text-[rgb(var(--color-text))]
+              "
+            >
+              {/* POSITIVE INDICATOR */}
+              <div
+                className="
+                  mt-1
+                  h-2.5 w-2.5 rounded-full
+                  bg-[rgb(var(--color-primary-soft))]
+                  shrink-0
+                "
+              />
+
+              {/* TEXT */}
+              <p className="body leading-relaxed">
+                {item.title}
+              </p>
+            </article>
           ))}
         </div>
 

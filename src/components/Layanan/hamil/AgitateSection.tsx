@@ -1,24 +1,81 @@
+// ------------------------------------------------------
+// AGITATE SECTION — Risk Awareness (Enterprise SaaS)
+// Bidan On Call Landing Page
+// ------------------------------------------------------
+
+type RiskItem = {
+  id: string;
+  title: string;
+};
+
+const risks: RiskItem[] = [
+  {
+    id: "monitoring",
+    title: "Kesehatan ibu tidak terpantau secara optimal",
+  },
+  {
+    id: "fetal",
+    title: "Perkembangan janin berisiko tidak terdeteksi dini",
+  },
+  {
+    id: "fatigue",
+    title: "Kelelahan fisik dan stres yang tidak tertangani",
+  },
+  {
+    id: "complication",
+    title: "Potensi komplikasi terlambat mendapatkan penanganan",
+  },
+];
+
 export default function AgitateSection() {
-  const risks: string[] = [
-    "Kesehatan ibu tidak terpantau dengan baik",
-    "Perkembangan janin tidak optimal",
-    "Kelelahan fisik dan stres berlebih",
-    "Potensi komplikasi terlambat ditangani",
-  ];
-
   return (
-    <section className="section-tight bg-soft">
-      <div className="container-main space-y-6">
+    <section
+      className="section-tight bg-[rgb(var(--color-soft))]"
+      aria-labelledby="agitate-heading"
+    >
+      <div className="container-main">
 
-        <h2 className="h2 text-[rgb(var(--color-dark))]">
-          Risiko Bisa Terjadi Tanpa Disadari
-        </h2>
+        {/* HEADER */}
+        <div className="max-w-[720px] space-y-3">
+          <h2
+            id="agitate-heading"
+            className="h2 text-[rgb(var(--color-dark))]"
+          >
+            Risiko Kehamilan Bisa Terjadi Tanpa Disadari
+          </h2>
 
-        <div className="grid sm:grid-cols-2 gap-4">
+          <p className="body text-[rgb(var(--color-muted))]">
+            Tanpa pendampingan yang tepat, berbagai risiko selama masa kehamilan
+            dapat berkembang secara perlahan dan tidak terdeteksi sejak dini.
+          </p>
+        </div>
+
+        {/* GRID */}
+        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
           {risks.map((item) => (
-            <div key={item} className="card-premium text-[12px]">
-              {item}
-            </div>
+            <article
+              key={item.id}
+              className="
+                card-premium
+                flex items-start gap-3
+                text-[rgb(var(--color-text))]
+              "
+            >
+              {/* INDICATOR (Warning Style) */}
+              <div
+                className="
+                  mt-1
+                  h-2.5 w-2.5 rounded-full
+                  bg-[rgb(var(--color-primary))]
+                  shrink-0
+                "
+              />
+
+              {/* TEXT */}
+              <p className="body leading-relaxed">
+                {item.title}
+              </p>
+            </article>
           ))}
         </div>
 

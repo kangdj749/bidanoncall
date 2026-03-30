@@ -1,23 +1,85 @@
+// ------------------------------------------------------
+// USP SECTION — Trust & Differentiation
+// Bidan On Call Landing Page
+// ------------------------------------------------------
+
+type USPItem = {
+  id: string;
+  title: string;
+};
+
+const points: USPItem[] = [
+  {
+    id: "professional",
+    title: "Bidan profesional dan berpengalaman",
+  },
+  {
+    id: "homecare",
+    title: "Pelayanan langsung ke rumah",
+  },
+  {
+    id: "sterile",
+    title: "Peralatan medis steril dan aman",
+  },
+  {
+    id: "personal",
+    title: "Pendampingan personal selama kehamilan",
+  },
+  {
+    id: "fast",
+    title: "Respon cepat dan jadwal fleksibel",
+  },
+];
+
 export default function USPSection() {
-  const points: string[] = [
-    "Bidan profesional dan berpengalaman",
-    "Pelayanan langsung ke rumah",
-    "Peralatan medis steril",
-    "Pendampingan personal",
-    "Respon cepat & fleksibel",
-  ];
-
   return (
-    <section className="section-tight bg-soft">
-      <div className="container-main space-y-6">
+    <section
+      className="section-tight bg-[rgb(var(--color-soft))]"
+      aria-labelledby="usp-heading"
+    >
+      <div className="container-main">
 
-        <h2 className="h2">Kenapa Memilih Bidan On Call</h2>
+        {/* HEADER */}
+        <div className="max-w-[720px] space-y-3">
+          <h2
+            id="usp-heading"
+            className="h2 text-[rgb(var(--color-dark))]"
+          >
+            Kenapa Memilih Layanan Bidan On Call
+          </h2>
 
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <p className="body text-[rgb(var(--color-muted))]">
+            Kami menghadirkan layanan homecare bidan yang profesional, responsif,
+            dan berfokus pada kenyamanan serta keamanan ibu dan janin.
+          </p>
+        </div>
+
+        {/* GRID */}
+        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {points.map((item) => (
-            <div key={item} className="card-premium text-[12px]">
-              {item}
-            </div>
+            <article
+              key={item.id}
+              className="
+                card-premium
+                flex items-start gap-3
+                text-[rgb(var(--color-text))]
+              "
+            >
+              {/* CHECK INDICATOR */}
+              <div
+                className="
+                  mt-1
+                  h-2.5 w-2.5 rounded-full
+                  bg-[rgb(var(--color-primary))]
+                  shrink-0
+                "
+              />
+
+              {/* TEXT */}
+              <p className="body leading-relaxed">
+                {item.title}
+              </p>
+            </article>
           ))}
         </div>
 
