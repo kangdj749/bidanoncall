@@ -17,7 +17,7 @@ interface Props {
 
 export default function NavbarClient({ posts }: Props) {
   const logo =
-    "https://res.cloudinary.com/de7fqcvpf/image/upload/v1774851972/logo_bidanoncall_sfphpn.jpg";
+    "https://res.cloudinary.com/de7fqcvpf/image/upload/v1774871761/logo_bidanoncall2_eo43np.png";
 
   const [mobileOpen, setMobileOpen] = useState<boolean>(false)
 
