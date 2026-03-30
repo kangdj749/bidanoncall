@@ -6,15 +6,19 @@ import { FiMenu } from "react-icons/fi"
 
 import NavbarSearch from "@/components/search/NavbarSearch"
 import MobileMenu from "@/components/layout/MobileMenu"
-
+import Image from "next/image"
 import { menuItems } from "@/data/menuItems"
 import type { BlogPost } from "@/types/blog"
+import { cloudinaryImage } from "@/lib/cloudinaryImage";
 
 interface Props {
   posts: BlogPost[]
 }
 
 export default function NavbarClient({ posts }: Props) {
+  const logo =
+    "https://res.cloudinary.com/de7fqcvpf/image/upload/v1774851972/logo_bidanoncall_sfphpn.jpg";
+
   const [mobileOpen, setMobileOpen] = useState<boolean>(false)
 
   const handleOpen = useCallback(() => {
@@ -37,17 +41,19 @@ export default function NavbarClient({ posts }: Props) {
       >
         <div className="container-main flex items-center justify-between h-[60px] md:h-[68px] gap-4">
 
-          {/* BRAND */}
-          <Link
-            href="/"
-            className="
-              text-[16px] md:text-[17px]
-              font-semibold tracking-[-0.01em]
-              text-[rgb(var(--color-primary))]
-              hover:opacity-90 transition-opacity
-            "
-          >
-            Bidan On Call
+        {/* Logo */}
+          <Link href="/" className="flex items-center">
+            <Image
+              src={cloudinaryImage(logo, "logo")}
+              alt="Bangun.in"
+              width={170}
+              height={100}
+              priority
+              className="
+                h-[24px] md:h-[28px]
+                w-auto object-contain
+              "
+            />
           </Link>
 
           {/* DESKTOP SEARCH */}

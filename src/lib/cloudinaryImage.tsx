@@ -11,6 +11,7 @@ export function cloudinaryImage(
     | "portrait"
     | "banner"
     | "icon"
+    | "logo"
     | "preview"
     | "gallery"
 ) {
@@ -31,6 +32,7 @@ export function cloudinaryImage(
     icon: "f_auto,q_auto,dpr_auto,w_14,h_14,c_limit",
     preview: "f_auto,q_auto,dpr_auto,w_360,h_240,c_fill,g_auto",
     gallery: "f_auto,q_auto,dpr_auto,w_420,h_260,c_fill,g_auto",
+    logo: "f_auto,q_auto,dpr_auto,h_100,c_limit",
   };
 
   return src.replace("/upload/", `/upload/${map[type]}/`);

@@ -5,6 +5,10 @@ import ThemeProvider from "@/components/theme-provider";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/layout/Navbar";
 
+/* ============================= */
+/* FONT SYSTEM */
+/* ============================= */
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-body",
@@ -22,41 +26,45 @@ const playfair = Playfair_Display({
 /* ============================= */
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://bangun-in.com"),
+  metadataBase: new URL("https://bidanoncall.com"),
 
   title: {
-    default: "Bangun.in — Konsultan Arsitektur & Engineering Indonesia",
-    template: "%s | Bangun.in Engineering Consultant",
+    default: "Bidan On Call — Layanan Bidan ke Rumah 24 Jam",
+    template: "%s | Bidan On Call",
   },
 
   description:
-    "PT Bangun Cipta Solusi (bangun.in) adalah konsultan arsitektur, engineering, topografi, dan geoteknik yang menyediakan solusi perencanaan dan manajemen konstruksi profesional di Indonesia.",
+    "Layanan bidan ke rumah 24 jam untuk ibu hamil, persalinan, dan perawatan bayi. Praktis, aman, dan nyaman tanpa perlu ke klinik.",
 
   keywords: [
-    "konsultan arsitektur",
-    "engineering consultant",
-    "konsultan teknik",
-    "perencanaan wilayah",
-    "geoteknik",
-    "topografi",
-    "konsultan konstruksi",
+    "bidan ke rumah",
+    "bidan on call",
+    "perawatan ibu hamil",
+    "bidan 24 jam",
+    "layanan kesehatan ibu dan bayi",
+    "homecare bidan",
+    "bidan panggilan",
   ],
 
+  alternates: {
+    canonical: "https://bidanoncall.com",
+  },
+
   openGraph: {
-    title: "Bangun.in Engineering Consultant",
+    title: "Bidan On Call — Layanan Bidan ke Rumah",
     description:
-      "Konsultan arsitektur, engineering, dan konstruksi terintegrasi untuk proyek profesional.",
-    url: "https://bangun-in.com",
-    siteName: "Bangun.in",
+      "Solusi praktis perawatan ibu hamil dan bayi dengan layanan bidan profesional langsung ke rumah.",
+    url: "https://bidanoncall.com",
+    siteName: "Bidan On Call",
     locale: "id_ID",
     type: "website",
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Bangun.in Engineering Consultant",
+    title: "Bidan On Call — Bidan ke Rumah",
     description:
-      "Konsultan arsitektur, engineering, dan konstruksi profesional.",
+      "Layanan bidan profesional ke rumah untuk ibu hamil & bayi.",
   },
 
   robots: {
@@ -71,20 +79,22 @@ export const metadata: Metadata = {
 
 const organizationSchema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "PT Bangun Cipta Solusi",
-  url: "https://bangun-in.com",
-  logo: "https://bangun-in.com/logo.png",
-  email: "bangunciptasolusi01@gmail.com",
-  telephone: "+62-877-6550-5935",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Jl. Perjuangan No. 88",
-    addressLocality: "Jakarta Barat",
-    addressCountry: "Indonesia",
+  "@type": "MedicalOrganization",
+  name: "Bidan On Call",
+  url: "https://bidanoncall.com",
+  logo: "https://bidanoncall.com/logo.png",
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+62-857-2003-8494",
+    contactType: "customer service",
+    areaServed: "ID",
+    availableLanguage: ["Indonesian"],
   },
-  sameAs: [],
 };
+
+/* ============================= */
+/* ROOT LAYOUT */
+/* ============================= */
 
 export default function RootLayout({
   children,
@@ -96,9 +106,9 @@ export default function RootLayout({
       lang="id"
       className={`${inter.variable} ${playfair.variable}`}
     >
-      <body className="font-sans text-gray-900 bg-white">
+      <body className="font-sans bg-[rgb(var(--color-bg))] text-[rgb(var(--color-text))] antialiased">
 
-        {/* JSON LD GLOBAL */}
+        {/* JSON-LD GLOBAL */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -107,12 +117,15 @@ export default function RootLayout({
         />
 
         <ThemeProvider>
+          {/* ================= NAVBAR ================= */}
           <Navbar />
 
-          <main className="pt-20">
+          {/* ================= MAIN ================= */}
+          <main className="pt-20 min-h-screen">
             {children}
           </main>
 
+          {/* ================= FOOTER ================= */}
           <Footer />
         </ThemeProvider>
 
