@@ -1,0 +1,271 @@
+@import "tailwindcss";
+
+/* ======================================================
+   DESIGN TOKENS — BIDAN ON CALL SYSTEM
+   SaaS • ChatGPT Style • Enterprise Clean
+====================================================== */
+
+:root {
+
+  /* ================================
+     BRAND COLORS
+  ================================= */
+
+  --color-primary: 228 0 120;
+  --color-primary-soft: 244 84 160;
+  --color-secondary: 165 95 145;
+
+  --color-white: 255 255 255;
+  --color-black: 0 0 0;
+
+  /* ================================
+     NEUTRAL SCALE
+  ================================= */
+
+  --color-bg: 255 255 255;
+  --color-surface: 249 248 250;
+  --color-elevated: 244 243 246;
+  --color-soft: 252 246 250;
+
+  --color-dark: 24 24 27;
+
+  --color-text: 28 28 32;
+  --color-muted: 110 110 120;
+  --color-subtle: 150 150 160;
+
+  /* ================================
+     BORDER SYSTEM
+  ================================= */
+
+  --color-border: 232 228 233;
+  --color-border-strong: 215 210 220;
+
+  /* ================================
+     SHADOW SYSTEM
+  ================================= */
+
+  --shadow-soft: 0 2px 8px rgba(0,0,0,0.04);
+  --shadow-elevated: 0 12px 32px rgba(0,0,0,0.06);
+  --shadow-focus: 0 0 0 2px rgba(228,0,120,0.12);
+
+  /* ================================
+     LAYOUT SYSTEM
+  ================================= */
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  --container-max: 1100px;
+}
+
+
+/* ======================================================
+   BASE STYLING (ChatGPT Feel)
+====================================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: rgb(var(--color-bg));
+  color: rgb(var(--color-text));
+
+  font-size: 14.5px;
+  line-height: 1.7;
+  letter-spacing: -0.01em;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+
+/* ======================================================
+   LAYOUT SYSTEM
+====================================================== */
+
+.container-main {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+.section {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.section-tight {
+  padding-top: 56px;
+  padding-bottom: 56px;
+}
+
+
+/* ======================================================
+   TYPOGRAPHY SYSTEM (SaaS Grade)
+====================================================== */
+
+.h1 {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 768px) {
+  .h1 {
+    font-size: 38px;
+  }
+}
+
+.h2 {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+}
+
+@media (min-width: 768px) {
+  .h2 {
+    font-size: 28px;
+  }
+}
+
+.h3 {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.body-lg {
+  font-size: 15.5px;
+  line-height: 1.75;
+  color: rgb(var(--color-text));
+}
+
+.body {
+  font-size: 14.5px;
+  line-height: 1.7;
+}
+
+.caption {
+  font-size: 12.5px;
+  color: rgb(var(--color-muted));
+  line-height: 1.6;
+}
+
+
+/* ======================================================
+   BUTTON SYSTEM
+====================================================== */
+
+.btn-primary {
+  background: rgb(var(--color-primary));
+  color: rgb(var(--color-white));
+  padding: 11px 24px;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  font-size: 13.5px;
+  letter-spacing: 0.2px;
+  transition: all .25s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  border: 1px solid rgb(var(--color-primary));
+  color: rgb(var(--color-primary));
+  padding: 11px 24px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  letter-spacing: 0.4px;
+  transition: all .25s ease;
+}
+
+.btn-outline:hover {
+  background: rgb(var(--color-primary));
+  color: rgb(var(--color-white));
+}
+
+
+/* ======================================================
+   CARD SYSTEM
+====================================================== */
+
+.card-premium {
+  border: 1px solid rgb(var(--color-border));
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  background: rgb(var(--color-surface));
+  box-shadow: var(--shadow-soft);
+  transition: all .25s ease;
+}
+
+.card-premium:hover {
+  background: rgb(var(--color-elevated));
+  box-shadow: var(--shadow-elevated);
+  border-color: rgb(var(--color-border-strong));
+  transform: translateY(-2px);
+}
+
+
+/* ======================================================
+   TEXT HELPERS
+====================================================== */
+
+.text-primary {
+  color: rgb(var(--color-primary));
+}
+
+.text-muted {
+  color: rgb(var(--color-muted));
+}
+
+.text-subtle {
+  color: rgb(var(--color-subtle));
+}
+
+.bg-primary {
+  background: rgb(var(--color-primary));
+  color: rgb(var(--color-white));
+}
+
+.bg-dark {
+  background: rgb(var(--color-dark));
+  color: rgb(var(--color-white));
+}
+
+.bg-surface {
+  background: rgb(var(--color-surface));
+}
+
+.bg-soft {
+  background: rgb(var(--color-soft));
+}
+
+
+/* ======================================================
+   UTILITIES
+====================================================== */
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+img {
+  image-rendering: auto;
+}
+
+::selection {
+  background: rgb(var(--color-primary) / 0.15);
+}
