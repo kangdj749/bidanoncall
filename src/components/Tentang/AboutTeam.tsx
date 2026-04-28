@@ -13,16 +13,16 @@ type TeamMember = {
 export default function AboutTeam() {
   const team: TeamMember[] = [
     {
-      name: "Bidan Siti",
+      name: "Bidan Nurhati Karlina",
       role: "Bidan Senior",
       experience: "10+ tahun pengalaman",
       image:
-        "https://res.cloudinary.com/de7fqcvpf/image/upload/v1773760540/bidan_xncksi.jpg",
+        "https://res.cloudinary.com/de7fqcvpf/image/upload/v1777391046/APNQkAEInMUwJycHwAfjlP4yH2C2UXwoRt35YtjGp4txakvuJ00_aLVqvfvUfoIuz4_fgUzicjsHxxMQ2y_v16GPbUI_KwerFyw6w1KapKbGen4srrN0BpXw36vCgUh6Sb_hqZQDlt5aBg_s680-w680-h510-rw_o9d4bj.webp",
     },
     {
-      name: "Bidan Dewi",
-      role: "Bidan Homecare",
-      experience: "6+ tahun pengalaman",
+      name: "Didin Suwarli",
+      role: "Terapis Hijama & Pijat Relaksasi Profesional",
+      experience: "3+ tahun pengalaman",
       image:
         "https://res.cloudinary.com/de7fqcvpf/image/upload/v1773760540/bidan_xncksi.jpg",
     },
