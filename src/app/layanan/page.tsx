@@ -4,7 +4,7 @@ import HeroLayanan from "@/components/Layanan/HeroLayanan";
 import IntroLayanan from "@/components/Layanan/IntroLayanan";
 import GridLayanan from "@/components/Layanan/GridLayanan";
 import CTALayanan from "@/components/Layanan/CTALayanan";
-
+import Link from "next/link";
 /* ============================= */
 /* SEO METADATA — HEALTHCARE */
 /* ============================= */
@@ -186,25 +186,25 @@ export default function Page() {
 
             <div className="flex flex-wrap gap-3">
 
-              <a href="/layanan/paket-hamil" className="btn-outline">
+              <Link href="/layanan/paket-hamil" className="btn-outline">
                 Paket Perawatan Kehamilan
-              </a>
+              </Link>
 
-              <a href="/layanan/doula-persalinan" className="btn-outline">
+              <Link href="/layanan/doula-persalinan" className="btn-outline">
                 Doula Persalinan
-              </a>
+              </Link>
 
-              <a href="/layanan/perawatan-nifas" className="btn-outline">
+              <Link href="/layanan/paket-nifas" className="btn-outline">
                 Perawatan Nifas
-              </a>
+              </Link>
 
-              <a href="/layanan/perawatan-bayi" className="btn-outline">
+              <Link href="/layanan/perawatan-bayi" className="btn-outline">
                 Perawatan Bayi
-              </a>
+              </Link>
 
-              <a href="/layanan/infus-rumah" className="btn-outline">
-                Infus ke Rumah
-              </a>
+              <Link href="/layanan/jasa-infus" className="btn-outline">
+                Jasa Infus ke Rumah
+              </Link>
 
             </div>
 
