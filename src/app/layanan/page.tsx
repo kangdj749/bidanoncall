@@ -1,57 +1,96 @@
 import type { Metadata } from "next";
 
-import ArchitectureSection from "@/components/Layanan/ArchitectureSection";
-import CTALayananSection from "@/components/Layanan/CTALayananSection";
-import EngineeringSection from "@/components/Layanan/EngineeringSection";
-import ServicesHeroSection from "@/components/Layanan/ServicesHeroSection";
-import SistemKerjaSection from "@/components/Layanan/SistemKerjaSection";
-import SpatialPlanningSection from "@/components/Layanan/SpatialPlanningSection";
-import TopographyGeotechSection from "@/components/Layanan/TopographyGeotechSection";
+import HeroLayanan from "@/components/Layanan/HeroLayanan";
+import IntroLayanan from "@/components/Layanan/IntroLayanan";
+import GridLayanan from "@/components/Layanan/GridLayanan";
+import CTALayanan from "@/components/Layanan/CTALayanan";
 
 /* ============================= */
-/* SEO METADATA */
+/* SEO METADATA — HEALTHCARE */
 /* ============================= */
 
 export const metadata: Metadata = {
-  title: "Layanan Konsultan Arsitektur & Engineering",
+  metadataBase: new URL("https://bidanoncall.com"),
+
+  title: "Layanan Bidan ke Rumah | Homecare Ibu & Bayi Profesional",
+
   description:
-    "Bangun.in menyediakan layanan konsultan arsitektur, engineering, perencanaan wilayah, topografi, dan geoteknik untuk mendukung pembangunan yang terencana dan profesional.",
+    "Layanan bidan ke rumah untuk perawatan kehamilan, persalinan, nifas, dan bayi. Solusi homecare kebidanan yang nyaman, aman, dan profesional langsung di rumah Anda.",
+
+  keywords: [
+    "bidan ke rumah",
+    "homecare bidan",
+    "perawatan ibu dan bayi",
+    "bidan panggilan",
+    "layanan bidan terdekat",
+    "perawatan nifas di rumah",
+    "perawatan bayi baru lahir",
+    "doula persalinan",
+  ],
 
   alternates: {
-    canonical: "https://bangun-in.com/layanan",
+    canonical: "/layanan",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
   },
 
   openGraph: {
-    title: "Layanan Engineering Consultant | Bangun.in",
+    title: "Layanan Bidan On Call | Perawatan Ibu & Bayi ke Rumah",
     description:
-      "Layanan profesional konsultan arsitektur, engineering, geoteknik, dan topografi.",
-    url: "https://bangun-in.com/layanan",
+      "Nikmati layanan bidan profesional langsung ke rumah untuk ibu hamil, persalinan, nifas, dan bayi.",
+    url: "https://bidanoncall.com/layanan",
+    siteName: "Bidan On Call",
+    locale: "id_ID",
     type: "website",
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Layanan Engineering Consultant | Bangun.in",
+    title: "Layanan Bidan ke Rumah Profesional",
     description:
-      "Solusi profesional untuk arsitektur, engineering, dan konstruksi.",
+      "Perawatan ibu & bayi lebih nyaman dengan layanan bidan ke rumah.",
   },
 };
 
 /* ============================= */
-/* STRUCTURED DATA */
+/* STRUCTURED DATA — HEALTHCARE */
 /* ============================= */
 
 const serviceSchema = {
   "@context": "https://schema.org",
-  "@type": "EngineeringService",
-  name: "Bangun.in Engineering Consultant",
-  url: "https://bangun-in.com/layanan",
-  serviceType: [
-    "Architecture Design",
-    "Engineering Consultant",
-    "Urban Planning",
-    "Geotechnical Engineering",
-    "Topography Survey",
+  "@type": "MedicalBusiness",
+  name: "Bidan On Call",
+  url: "https://bidanoncall.com/layanan",
+  description:
+    "Layanan bidan ke rumah untuk perawatan ibu hamil, persalinan, nifas, dan bayi baru lahir.",
+  areaServed: {
+    "@type": "Country",
+    name: "Indonesia",
+  },
+  availableService: [
+    {
+      "@type": "MedicalProcedure",
+      name: "Paket Perawatan Kehamilan",
+    },
+    {
+      "@type": "MedicalProcedure",
+      name: "Doula Persalinan",
+    },
+    {
+      "@type": "MedicalProcedure",
+      name: "Perawatan Nifas",
+    },
+    {
+      "@type": "MedicalProcedure",
+      name: "Perawatan Bayi Baru Lahir",
+    },
+    {
+      "@type": "MedicalProcedure",
+      name: "Infus ke Rumah",
+    },
   ],
 };
 
@@ -61,18 +100,18 @@ const faqSchema = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "Apa saja layanan yang disediakan Bangun.in?",
+      name: "Apakah bidan bisa datang ke rumah?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Bangun.in menyediakan layanan arsitektur, engineering, perencanaan wilayah, topografi, dan geoteknik.",
+        text: "Ya, layanan Bidan On Call memungkinkan bidan profesional datang langsung ke rumah untuk perawatan ibu dan bayi.",
       },
     },
     {
       "@type": "Question",
-      name: "Apakah Bangun.in melayani proyek di seluruh Indonesia?",
+      name: "Layanan apa saja yang tersedia?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Ya, layanan konsultansi kami dapat mendukung proyek di berbagai wilayah Indonesia.",
+        text: "Kami menyediakan layanan perawatan kehamilan, doula persalinan, perawatan nifas, perawatan bayi, dan infus ke rumah.",
       },
     },
   ],
@@ -86,22 +125,25 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       position: 1,
       name: "Beranda",
-      item: "https://bangun-in.com",
+      item: "https://bidanoncall.com",
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Layanan",
-      item: "https://bangun-in.com/layanan",
+      item: "https://bidanoncall.com/layanan",
     },
   ],
 };
 
+/* ============================= */
+/* PAGE */
+/* ============================= */
+
 export default function Page() {
   return (
     <>
-      {/* JSON LD */}
-
+      {/* JSON-LD */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -123,43 +165,54 @@ export default function Page() {
         }}
       />
 
-      <main className="relative">
+      <main className="bg-[rgb(var(--color-bg))]">
 
-        <ServicesHeroSection />
+        {/* HERO */}
+        <HeroLayanan />
 
-        <SpatialPlanningSection />
+        {/* INTRO */}
+        <IntroLayanan />
 
-        <ArchitectureSection />
+        {/* GRID */}
+        <GridLayanan />
 
-        <EngineeringSection />
+        {/* INTERNAL LINK SEO (PREMIUM STYLE) */}
+        <section className="section-tight">
+          <div className="container-main space-y-4">
 
-        <TopographyGeotechSection />
+            <h3 className="h3">
+              Layanan Populer Bidan On Call
+            </h3>
 
-        <SistemKerjaSection />
+            <div className="flex flex-wrap gap-3">
 
-        {/* SEO INTERNAL LINK */}
+              <a href="/layanan/paket-hamil" className="btn-outline">
+                Paket Perawatan Kehamilan
+              </a>
 
-        <section className="container-main py-12">
-          <h2 className="text-[18px] font-semibold mb-4">
-            Layanan Konsultan Kami
-          </h2>
+              <a href="/layanan/doula-persalinan" className="btn-outline">
+                Doula Persalinan
+              </a>
 
-          <div className="flex flex-wrap gap-4 text-[13px]">
-            <a href="/layanan#arsitektur" className="underline">
-              Layanan Arsitektur
-            </a>
+              <a href="/layanan/perawatan-nifas" className="btn-outline">
+                Perawatan Nifas
+              </a>
 
-            <a href="/layanan#engineering" className="underline">
-              Layanan Engineering
-            </a>
+              <a href="/layanan/perawatan-bayi" className="btn-outline">
+                Perawatan Bayi
+              </a>
 
-            <a href="/layanan#geoteknik" className="underline">
-              Layanan Geoteknik
-            </a>
+              <a href="/layanan/infus-rumah" className="btn-outline">
+                Infus ke Rumah
+              </a>
+
+            </div>
+
           </div>
         </section>
 
-        <CTALayananSection />
+        {/* CTA */}
+        <CTALayanan />
 
       </main>
     </>
