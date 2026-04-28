@@ -15,7 +15,7 @@ const fade: Variants = {
 
 export default function HeroBayi() {
   const image =
-    "https://res.cloudinary.com/de7fqcvpf/image/upload/v1773759200/perawatan_bidan_nuiofc.jpg";
+    "https://res.cloudinary.com/de7fqcvpf/image/upload/v1777389669/perawatan-bayi_ysq9wk.jpg";
 
   return (
     <section className="section bg-[rgb(var(--color-soft))]">

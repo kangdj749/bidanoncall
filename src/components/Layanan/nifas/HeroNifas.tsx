@@ -15,7 +15,7 @@ const fadeUp: Variants = {
 
 export default function HeroNifas() {
   const image =
-    "https://res.cloudinary.com/de7fqcvpf/image/upload/v1773759200/perawatan_bidan_nuiofc.jpg";
+    "https://res.cloudinary.com/de7fqcvpf/image/upload/v1777390035/nifas_qwzvii.jpg";
 
   return (
     <section className="section bg-[rgb(var(--color-soft))]">

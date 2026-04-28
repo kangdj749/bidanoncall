@@ -1,7 +1,7 @@
 "use client";
 
 const stats = [
-  { label: "Ibu Dilayani", value: "1.000+" },
+  { label: "Ibu Dilayani", value: "500+" },
   { label: "Rating", value: "4.9/5" },
   { label: "Respon", value: "< 5 Menit" },
 ];

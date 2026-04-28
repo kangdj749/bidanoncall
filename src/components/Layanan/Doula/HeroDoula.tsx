@@ -5,7 +5,7 @@ import { cloudinaryImage } from "@/lib/cloudinaryImage";
 
 export default function Hero() {
   const image =
-    "https://res.cloudinary.com/de7fqcvpf/image/upload/v1773759200/perawatan_bidan_nuiofc.jpg";
+    "https://res.cloudinary.com/de7fqcvpf/image/upload/v1777390569/doulas_xun5bj.jpg";
   
   return (
     <section className="section bg-soft">

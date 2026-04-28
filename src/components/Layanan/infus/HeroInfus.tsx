@@ -15,7 +15,7 @@ const fade: Variants = {
 
 export default function HeroInfus() {
   const image =
-    "https://res.cloudinary.com/de7fqcvpf/image/upload/v1773759200/perawatan_bidan_nuiofc.jpg";
+    "https://res.cloudinary.com/de7fqcvpf/image/upload/v1777389506/jasa_infus_ygih1c.jpg";
 
   return (
     <section className="section bg-[rgb(var(--color-soft))]">

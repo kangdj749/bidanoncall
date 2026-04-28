@@ -10,7 +10,7 @@ type Feature = {
 
 export default function HeroSection() {
   const image =
-    "https://res.cloudinary.com/de7fqcvpf/image/upload/v1773759200/perawatan_bidan_nuiofc.jpg";
+    "https://res.cloudinary.com/de7fqcvpf/image/upload/v1777389981/ibu_hamil_j2syid.jpg";
 
   const features: Feature[] = [
     { title: "Pemeriksaan rutin bidan berpengalaman" },

@@ -18,35 +18,35 @@ export default function ServicesSection() {
       desc: "Pendampingan kesehatan selama kehamilan agar ibu dan janin tetap sehat hingga persalinan.",
       href: "/layanan/paket-hamil",
       image:
-        "https://res.cloudinary.com/de7fqcvpf/image/upload/v1773632861/muslim-doula_qih1wg.jpg",
+        "https://res.cloudinary.com/de7fqcvpf/image/upload/v1777389981/ibu_hamil_j2syid.jpg",
     },
     {
       title: "Doula Persalinan",
       desc: "Pendampingan emosional dan fisik agar proses melahirkan lebih tenang dan nyaman.",
       href: "/layanan/doula-persalinan",
       image:
-        "https://res.cloudinary.com/de7fqcvpf/image/upload/v1773632861/muslim-doula_qih1wg.jpg",
+        "https://res.cloudinary.com/de7fqcvpf/image/upload/v1777390569/doulas_xun5bj.jpg",
     },
     {
       title: "Paket Perawatan Nifas",
       desc: "Perawatan ibu pasca melahirkan agar proses pemulihan berjalan optimal.",
       href: "/layanan/perawatan-nifas",
       image:
-        "https://res.cloudinary.com/de7fqcvpf/image/upload/v1773632861/muslim-doula_qih1wg.jpg",
+        "https://res.cloudinary.com/de7fqcvpf/image/upload/v1777390035/nifas_qwzvii.jpg",
     },
     {
       title: "Perawatan Bayi",
       desc: "Perawatan bayi baru lahir oleh bidan berpengalaman langsung di rumah.",
       href: "/layanan/perawatan-bayi",
       image:
-        "https://res.cloudinary.com/de7fqcvpf/image/upload/v1773632861/muslim-doula_qih1wg.jpg",
+        "https://res.cloudinary.com/de7fqcvpf/image/upload/v1777389669/perawatan-bayi_ysq9wk.jpg",
     },
     {
       title: "Infus ke Rumah",
       desc: "Layanan infus medis di rumah untuk membantu pemulihan kesehatan ibu.",
       href: "/layanan/infus-rumah",
       image:
-        "https://res.cloudinary.com/de7fqcvpf/image/upload/v1773632861/muslim-doula_qih1wg.jpg",
+        "https://res.cloudinary.com/de7fqcvpf/image/upload/v1777389506/jasa_infus_ygih1c.jpg",
     },
   ];
 
