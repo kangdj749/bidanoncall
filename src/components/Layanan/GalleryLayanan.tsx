@@ -2,230 +2,213 @@
 
 import Image from "next/image";
 import {
-  useState,
-  useCallback,
-  useEffect,
-  useRef,
-} from "react";
-import { motion, AnimatePresence } from "framer-motion";
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  useAnimation,
+} from "framer-motion";
+import { useEffect, useState, useRef } from "react";
 import { cloudinaryImage } from "@/lib/cloudinaryImage";
+import type { PanInfo } from "framer-motion";
 
-type Props = {
+interface Props {
   images: string[];
-};
+}
 
 export default function GalleryLayanan({ images }: Props) {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const [scale, setScale] = useState(1);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const safeImages = images.slice(0, 20);
 
-  const dragging = useRef(false);
-  const start = useRef({ x: 0, y: 0 });
+  const visible = 5;
+  const itemWidth = 100 / visible;
 
-  const hasActive = activeIndex !== null;
+  const [index, setIndex] = useState(0);
+  const [active, setActive] = useState<number | null>(null);
+  const [paused, setPaused] = useState(false);
+
+  const controls = useAnimation();
+  const x = useMotionValue(0);
+
+  const total = safeImages.length;
+
+  /* ================= AUTO PLAY ================= */
+  useEffect(() => {
+    if (paused || total <= visible) return;
+
+    const interval = setInterval(() => {
+      next();
+    }, 3500);
+
+    return () => clearInterval(interval);
+  }, [paused, index, total]);
 
   /* ================= NAV ================= */
-  const prev = useCallback(() => {
-    setActiveIndex((i) =>
-      i === null ? i : (i - 1 + images.length) % images.length
+  const next = () => {
+    setIndex((prev) =>
+      prev + 1 > total - visible ? 0 : prev + 1
     );
-    resetTransform();
-  }, [images.length]);
-
-  const next = useCallback(() => {
-    setActiveIndex((i) =>
-      i === null ? i : (i + 1) % images.length
-    );
-    resetTransform();
-  }, [images.length]);
-
-  const resetTransform = () => {
-    setScale(1);
-    setPosition({ x: 0, y: 0 });
   };
 
-  /* ================= KEYBOARD ================= */
+  const prev = () => {
+    setIndex((prev) =>
+      prev - 1 < 0 ? total - visible : prev - 1
+    );
+  };
+
+  /* ================= ANIMATE ================= */
   useEffect(() => {
-    if (!hasActive) return;
-
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setActiveIndex(null);
-      if (e.key === "ArrowRight") next();
-      if (e.key === "ArrowLeft") prev();
-    };
-
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
-  }, [hasActive, next, prev]);
-
-  /* ================= ZOOM ================= */
-  const handleWheel = (e: React.WheelEvent) => {
-    e.preventDefault();
-
-    const delta = -e.deltaY * 0.0015;
-    setScale((prev) => {
-      const next = Math.min(Math.max(prev + delta, 1), 4);
-      return next;
+    controls.start({
+      x: `-${index * itemWidth}%`,
+      transition: {
+        type: "spring",
+        stiffness: 90,
+        damping: 18,
+      },
     });
-  };
+  }, [index]);
 
-  /* ================= DRAG ================= */
-  const handlePointerDown = (e: React.PointerEvent) => {
-    dragging.current = true;
-    start.current = {
-      x: e.clientX - position.x,
-      y: e.clientY - position.y,
+  /* ================= SWIPE ================= */
+  const handleDragEnd = (
+    _: MouseEvent | TouchEvent | PointerEvent,
+    info: PanInfo
+    ) => {
+    const threshold = 50;
+
+    if (info.offset.x < -threshold) next();
+    if (info.offset.x > threshold) prev();
     };
-  };
-
-  const handlePointerMove = (e: React.PointerEvent) => {
-    if (!dragging.current || scale <= 1) return;
-
-    setPosition({
-      x: e.clientX - start.current.x,
-      y: e.clientY - start.current.y,
-    });
-  };
-
-  const handlePointerUp = () => {
-    dragging.current = false;
-  };
-
-  const handleDoubleClick = () => {
-    resetTransform();
-  };
 
   return (
     <section className="section bg-[rgb(var(--color-bg))]">
       <div className="container-main space-y-6">
 
         {/* HEADER */}
-        <div className="max-w-xl">
-          <h2 className="h2 mb-2">
-            Dokumentasi Pelayanan
-          </h2>
-          <p className="text-[rgb(var(--color-muted))] text-sm">
-            Proses pelayanan langsung oleh bidan profesional di rumah pasien.
-          </p>
+        <div className="flex items-end justify-between">
+          <h2 className="h2">Dokumentasi Layanan</h2>
+
+          <div className="flex gap-2">
+            <button
+              onClick={prev}
+              className="w-9 h-9 rounded-full border border-[rgb(var(--color-border))] hover:bg-[rgb(var(--color-surface))]"
+            >
+              ‹
+            </button>
+            <button
+              onClick={next}
+              className="w-9 h-9 rounded-full border border-[rgb(var(--color-border))] hover:bg-[rgb(var(--color-surface))]"
+            >
+              ›
+            </button>
+          </div>
         </div>
 
-        {/* SLIDER (MOBILE FIRST) */}
-        <div className="
-          flex gap-4 overflow-x-auto pb-2
-          snap-x snap-mandatory
-          no-scrollbar
-        ">
-          {images.map((img, i) => (
-            <motion.button
-              key={i}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => setActiveIndex(i)}
-              className="
-                relative
-                min-w-[200px]
-                h-[300px]
-                snap-start
-                rounded-[var(--radius-lg)]
-                overflow-hidden
-                border border-[rgb(var(--color-border))]
-                bg-[rgb(var(--color-surface))]
-                shadow-[var(--shadow-soft)]
-              "
-            >
-              <Image
-                src={cloudinaryImage(img, "portrait")}
-                alt="Dokumentasi pelayanan bidan"
-                fill
-                sizes="200px"
-                className="object-cover"
-              />
+        {/* SLIDER */}
+        <div
+          className="overflow-hidden"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
+          <motion.div
+            className="flex gap-4 cursor-grab active:cursor-grabbing"
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            style={{ x }}
+            animate={controls}
+            onDragEnd={handleDragEnd}
+          >
+            {safeImages.map((img, i) => (
+              <div
+                key={i}
+                className="min-w-[calc(100%/5-12px)]"
+                onClick={() => setActive(i)}
+              >
+                <div className="relative aspect-[3/4] rounded-[var(--radius-lg)] overflow-hidden border border-[rgb(var(--color-border))] group">
 
-              <div className="absolute inset-0 bg-black/0 hover:bg-black/10 transition" />
-            </motion.button>
+                  <Image
+                    src={cloudinaryImage(img, "portrait")}
+                    alt={`Gallery ${i}`}
+                    fill
+                    className="object-cover transition duration-700 group-hover:scale-[1.05]"
+                  />
+
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition" />
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* DOTS */}
+        <div className="flex justify-center gap-2">
+          {Array.from({ length: total - visible + 1 }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setIndex(i)}
+              className={`w-2 h-2 rounded-full transition ${
+                i === index
+                  ? "bg-[rgb(var(--color-primary))]"
+                  : "bg-[rgb(var(--color-border))]"
+              }`}
+            />
           ))}
         </div>
-
       </div>
 
-      {/* ================= LIGHTBOX ================= */}
+      {/* LIGHTBOX */}
       <AnimatePresence>
-        {hasActive && (
+        {active !== null && (
           <motion.div
-            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center"
+            className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setActiveIndex(null)}
+            onClick={() => setActive(null)}
           >
-            {/* CLOSE */}
             <button
-              onClick={() => setActiveIndex(null)}
-              className="absolute top-6 right-6 text-white text-xs opacity-70 hover:opacity-100"
+              className="absolute top-6 right-6 text-white text-xs"
+              onClick={() => setActive(null)}
             >
               CLOSE
             </button>
 
-            {/* NAV */}
             <button
+              className="absolute left-6 text-white text-3xl"
               onClick={(e) => {
                 e.stopPropagation();
-                prev();
+                setActive((i) =>
+                  i === null ? i : (i - 1 + total) % total
+                );
               }}
-              className="absolute left-6 text-white text-3xl opacity-40 hover:opacity-100"
             >
               ‹
             </button>
 
             <button
+              className="absolute right-6 text-white text-3xl"
               onClick={(e) => {
                 e.stopPropagation();
-                next();
+                setActive((i) =>
+                  i === null ? i : (i + 1) % total
+                );
               }}
-              className="absolute right-6 text-white text-3xl opacity-40 hover:opacity-100"
             >
               ›
             </button>
 
-            {/* IMAGE */}
             <motion.div
-              key={activeIndex}
-              className="relative w-full max-w-[900px] h-[85vh] cursor-grab active:cursor-grabbing"
-              initial={{ scale: 0.96, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.96, opacity: 0 }}
-              transition={{ duration: 0.25 }}
+              className="relative w-full max-w-[900px] h-[80vh]"
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.95 }}
               onClick={(e) => e.stopPropagation()}
-              onWheel={handleWheel}
-              onPointerDown={handlePointerDown}
-              onPointerMove={handlePointerMove}
-              onPointerUp={handlePointerUp}
-              onPointerLeave={handlePointerUp}
-              onDoubleClick={handleDoubleClick}
             >
-              <motion.div
-                style={{
-                  scale,
-                  x: position.x,
-                  y: position.y,
-                }}
-                transition={{ type: "spring", stiffness: 120, damping: 20 }}
-                className="w-full h-full"
-              >
-                <Image
-                  src={cloudinaryImage(images[activeIndex], "detail")}
-                  alt="Dokumentasi pelayanan"
-                  fill
-                  priority
-                  className="object-contain"
-                />
-              </motion.div>
+              <Image
+                src={cloudinaryImage(safeImages[active], "detail")}
+                alt=""
+                fill
+                className="object-contain"
+                priority
+              />
             </motion.div>
-
-            {/* INDEX */}
-            <div className="absolute bottom-6 text-white text-xs opacity-70">
-              {activeIndex + 1} / {images.length}
-            </div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -9,7 +9,7 @@ import TrustBayi from "@/components/Layanan/bayi/TrustBayi";
 import CTABayi from "@/components/Layanan/bayi/CTABayi";
 import GalleryLayanan from "@/components/Layanan/GalleryLayanan";
 import { getGalleryByService } from "@/lib/gallery";
-import { Link } from "lucide-react";
+import Link from "next/link";
 import CityServiceList from "../LinkCitySection";
 
 
@@ -105,35 +105,33 @@ export default async function Page() {
 
             <div className="flex flex-wrap gap-3">
 
-              <Link
-                href="/layanan/doula-persalinan"
-                className="btn-outline"
-              >
-                Doula Persalinan
-              </Link>
+              {[
+                { href: "/layanan/doula-persalinan", label: "Doula Persalinan" },
+                { href: "/layanan/paket-nifas", label: "Perawatan Nifas" },
+                { href: "/layanan/paket-ibu-hamil", label: "Paket Ibu Hamil" },
+                { href: "/layanan/jasa-infus-rumah", label: "Infus ke Rumah" },
+                { href: "/layanan/paket-nifas", label: "Paket Nifas" },
+              ].map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="
+                    inline-flex items-center justify-center
+                    h-[36px] px-4
+                    rounded-[var(--radius-md)]
+                    border border-[rgb(var(--color-primary))]
+                    text-[rgb(var(--color-primary))]
+                    text-[12.5px] font-medium
+                    transition-all duration-200
+                    hover:bg-[rgb(var(--color-primary))]
+                    hover:text-[rgb(var(--color-white))]
+                    hover:shadow-[var(--shadow-soft)]
+                  "
+                >
+                  {item.label}
+                </Link>
+              ))}
 
-              <Link
-                href="/layanan/paket-nifas"
-                className="btn-outline"
-              >
-                Perawatan Nifas
-              </Link>
-
-             
-
-              <Link
-                href="/layanan/jasa-infus-rumah"
-                className="btn-outline"
-              >
-                Infus ke Rumah
-              </Link>
-
-	      <Link
-                href="/layanan/paket-ibu-hamil"
-                className="btn-outline"
-              >
-                Paket Ibu Hamil
-              </Link>
             </div>
           </div>
         </section>

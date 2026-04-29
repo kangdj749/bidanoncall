@@ -10,7 +10,7 @@ import TrustInfus from "@/components/Layanan/infus/TrustInfus";
 import CTAInfus from "@/components/Layanan/infus/CTAInfus";
 import GalleryLayanan from "@/components/Layanan/GalleryLayanan";
 import { getGalleryByService } from "@/lib/gallery";
-import { Link } from "lucide-react";
+import Link from "next/link";
 import CityServiceList from "../LinkCitySection";
 
 export const metadata: Metadata = {
@@ -98,39 +98,38 @@ export default async function Page() {
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-3">
 
-              <Link
-                href="/layanan/doula-persalinan"
-                className="btn-outline"
-              >
-                Doula Persalinan
-              </Link>
+              {[
+                { href: "/layanan/doula-persalinan", label: "Doula Persalinan" },
+                { href: "/layanan/paket-nifas", label: "Perawatan Nifas" },
+                { href: "/layanan/perawatan-bayi", label: "Perawatan Bayi" },
+                { href: "/layanan/jasa-infus-rumah", label: "Infus ke Rumah" },
+              ].map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="
+                    inline-flex items-center justify-center
+                    h-[36px] px-4
+                    rounded-[var(--radius-md)]
+                    border border-[rgb(var(--color-primary))]
+                    text-[rgb(var(--color-primary))]
+                    text-[12.5px] font-medium
+                    transition-all duration-200
+                    hover:bg-[rgb(var(--color-primary))]
+                    hover:text-[rgb(var(--color-white))]
+                    hover:shadow-[var(--shadow-soft)]
+                  "
+                >
+                  {item.label}
+                </Link>
+              ))}
 
-              <Link
-                href="/layanan/paket-nifas"
-                className="btn-outline"
-              >
-                Perawatan Nifas
-              </Link>
+            </div>
+          </div>
+        </section>
 
-              <Link
-                href="/layanan/perawatan-bayi"
-                className="btn-outline"
-              >
-                Perawatan Bayi
-              </Link>
-
-             
-              <Link
-                      href="/layanan/paket-ibu-hamil"
-                      className="btn-outline"
-                    >
-                      Paket Ibu Hamil
-                    </Link>
-                  </div>
-                </div>
-              </section>
         <CTAInfus />
       </main>
     </>
