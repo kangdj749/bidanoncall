@@ -36,11 +36,11 @@ export default function Footer() {
 
             <ul className="space-y-2.5">
               {[
-                { label: "Paket Ibu Hamil", href: "/layanan/paket-hamil" },
+                { label: "Paket Ibu Hamil", href: "/layanan/paket-ibu-hamil" },
                 { label: "Doula Persalinan", href: "/layanan/doula-persalinan" },
                 { label: "Paket Nifas", href: "/layanan/paket-nifas" },
                 { label: "Perawatan Bayi", href: "/layanan/perawatan-bayi" },
-                { label: "Jasa Infus", href: "/layanan/jasa-infus" },
+                { label: "Jasa Infus", href: "/layanan/jasa-infus-rumah" },
               ].map((item) => (
                 <li key={item.href}>
                   <Link
