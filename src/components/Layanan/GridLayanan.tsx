@@ -14,7 +14,7 @@ const services: ServiceItem[] = [
   {
     title: "Paket Perawatan Kehamilan",
     desc: "Monitoring rutin ibu & janin dengan bidan profesional.",
-    href: "/layanan/paket-hamil",
+    href: "/layanan/paket-ibu-hamil",
   },
   {
     title: "Doula Persalinan",
@@ -34,7 +34,7 @@ const services: ServiceItem[] = [
   {
     title: "Infus ke Rumah",
     desc: "Layanan infus praktis tanpa perlu ke klinik.",
-    href: "/layanan/infus-rumah",
+    href: "/layanan/jasa-infus-rumah",
   },
 ];
 
