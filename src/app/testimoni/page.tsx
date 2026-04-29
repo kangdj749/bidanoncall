@@ -1,31 +1,28 @@
-// app/testimoni/page.tsx
-import type { Metadata } from "next";
+import GoogleReviewPremium from "@/components/Testimoni/GoogleReviewPremium";
+import RatingSummary from "@/components/Testimoni/RatingSummary";
 
-import HeroTestimoni from "@/components/Testimoni/HeroTestimoni";
-import StatsProof from "@/components/Testimoni/StatsProof";
+import { getGoogleReviews, getRatingSummary } from "@/lib/review";
+import { getGalleryByService } from "@/lib/gallery";
 import VideoTestimoni from "@/components/Testimoni/VideoTestimoni";
-import WhatsAppProof from "@/components/Testimoni/WhatsAppProof";
-import GoogleReview from "@/components/Testimoni/GoogleReview";
-import CTATestimoni from "@/components/Testimoni/CTATestimoni";
 
-export const metadata: Metadata = {
-  title: "Testimoni Bidan On Call | Review Ibu & Bayi",
-  description:
-    "Lihat pengalaman nyata ibu yang menggunakan layanan bidan ke rumah. Testimoni video, WhatsApp, dan Google review Bidan On Call.",
-  alternates: {
-    canonical: "/testimoni",
-  },
-};
+export default async function Page() {
+  const reviews = await getGoogleReviews();
+  const { rating, total } = getRatingSummary(reviews);
+  const gallery = await getGalleryByService("review");
 
-export default function Page() {
   return (
-    <main className="bg-[rgb(var(--color-bg))]">
-      <HeroTestimoni />
-      <StatsProof />
-      <VideoTestimoni />
-      <WhatsAppProof />
-      <GoogleReview />
-      <CTATestimoni />
+    <main>
+
+      {/* ⭐ AUTO RATING */}
+      <RatingSummary rating={rating} total={total} />
+
+      {/* 💬 REVIEW + GALERI */}
+      <GoogleReviewPremium
+        reviews={reviews}
+        images={gallery?.images || []}
+      />
+      {/* 💬 VIDEO PROSES LAYANAN */}
+      <VideoTestimoni /> 
     </main>
   );
 }

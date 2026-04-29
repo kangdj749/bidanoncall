@@ -11,7 +11,7 @@ export default function VideoTestimoni() {
       <div className="container-main space-y-6">
 
         <h2 className="h2 text-center">
-          Cerita Nyata dari Ibu
+          Cerita Nyata dari Ibu dan Proses Layanan
         </h2>
 
         <div className="grid md:grid-cols-2 gap-4">
