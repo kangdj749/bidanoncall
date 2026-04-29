@@ -14,6 +14,8 @@ import Target from "@/components/Layanan/Doula/TargetDoula"
 import Trust from "@/components/Layanan/Doula/TrustDoula"
 import Testimonial from "@/components/Layanan/Doula/TestimonialDoula"
 import CTA from "@/components/Layanan/Doula/CTADoula"
+import GalleryLayanan from "@/components/Layanan/GalleryLayanan";
+import { getGalleryByService } from "@/lib/gallery";
 
 /* ============================= */
 /* SEO METADATA */
@@ -167,7 +169,8 @@ const faqSchema = {
 /* PAGE */
 /* ============================= */
 
-export default function Page() {
+export default async function Page() {
+  const gallery = await getGalleryByService("doula");
   return (
     <>
       {/* JSON-LD */}
@@ -204,6 +207,7 @@ export default function Page() {
         <Target />
         <Trust />
         <Testimonial />
+        <GalleryLayanan images={gallery?.images || []} />
 
         {/* CITY SEO */}
         <CityServiceList service="doula-persalinan" />
@@ -218,7 +222,7 @@ export default function Page() {
 
             <div className="flex flex-wrap gap-3">
 
-              <Link href="/layanan/paket-hamil" className="btn-outline">
+              <Link href="/layanan/paket-ibu-hamil" className="btn-outline">
                 Paket Ibu Hamil
               </Link>
 
@@ -230,7 +234,7 @@ export default function Page() {
                 Perawatan Bayi
               </Link>
 
-              <Link href="/layanan/infus-rumah" className="btn-outline">
+              <Link href="/layanan/jasa-infus-rumah" className="btn-outline">
                 Infus ke Rumah
               </Link>
 

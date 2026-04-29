@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { MessageCircle } from "lucide-react";
 
 export default function WhatsAppCTA() {
-  const whatsappNumber = "6281322817712";
+  const whatsappNumber = "6285720038494";
 
   const defaultMessage = `
 Assalamu'alaikum,

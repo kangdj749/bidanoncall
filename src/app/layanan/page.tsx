@@ -186,7 +186,7 @@ export default function Page() {
 
             <div className="flex flex-wrap gap-3">
 
-              <Link href="/layanan/paket-hamil" className="btn-outline">
+              <Link href="/layanan/paket-ibu-hamil" className="btn-outline">
                 Paket Perawatan Kehamilan
               </Link>
 
@@ -202,7 +202,7 @@ export default function Page() {
                 Perawatan Bayi
               </Link>
 
-              <Link href="/layanan/jasa-infus" className="btn-outline">
+              <Link href="/layanan/jasa-infus-rumah" className="btn-outline">
                 Jasa Infus ke Rumah
               </Link>
 

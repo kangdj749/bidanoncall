@@ -8,6 +8,10 @@ import SolutionInfus from "@/components/Layanan/infus/SolutionInfus";
 import InfusTypes from "@/components/Layanan/infus/InfusTypes";
 import TrustInfus from "@/components/Layanan/infus/TrustInfus";
 import CTAInfus from "@/components/Layanan/infus/CTAInfus";
+import GalleryLayanan from "@/components/Layanan/GalleryLayanan";
+import { getGalleryByService } from "@/lib/gallery";
+import { Link } from "lucide-react";
+import CityServiceList from "../LinkCitySection";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bidanoncall.com"),
@@ -60,7 +64,8 @@ const schema = {
   therapyType: "Intravenous Therapy",
 };
 
-export default function Page() {
+export default async function Page() {
+  const gallery = await getGalleryByService("infus");
   return (
     <>
       <script
@@ -74,6 +79,58 @@ export default function Page() {
         <SolutionInfus />
         <InfusTypes />
         <TrustInfus />
+        <GalleryLayanan images={gallery?.images || []} />
+        {/* 🔥 CITY SEO */}
+        <CityServiceList service="jasa-infus-rumah" />
+
+        {/* ============================= */}
+        {/* RELATED SERVICES — REFACTOR */}
+        {/* ============================= */}
+        <section className="section-tight bg-[rgb(var(--color-soft))]">
+          <div className="container-main space-y-4">
+
+            <div className="max-w-[520px] space-y-2">
+              <h3 className="h3 text-[rgb(var(--color-dark))]">
+                Layanan Terkait
+              </h3>
+              <p className="caption">
+                Pilihan layanan lain untuk mendukung kesehatan ibu & bayi
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-3">
+
+              <Link
+                href="/layanan/doula-persalinan"
+                className="btn-outline"
+              >
+                Doula Persalinan
+              </Link>
+
+              <Link
+                href="/layanan/paket-nifas"
+                className="btn-outline"
+              >
+                Perawatan Nifas
+              </Link>
+
+              <Link
+                href="/layanan/perawatan-bayi"
+                className="btn-outline"
+              >
+                Perawatan Bayi
+              </Link>
+
+             
+              <Link
+                      href="/layanan/paket-ibu-hamil"
+                      className="btn-outline"
+                    >
+                      Paket Ibu Hamil
+                    </Link>
+                  </div>
+                </div>
+              </section>
         <CTAInfus />
       </main>
     </>

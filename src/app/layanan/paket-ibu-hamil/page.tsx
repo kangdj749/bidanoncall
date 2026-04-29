@@ -12,6 +12,8 @@ import USPSection from "@/components/Layanan/hamil/USPSection";
 import DetailPackageSection from "@/components/Layanan/hamil/DetailPackageSection";
 import TargetSection from "@/components/Layanan/hamil/TargetSection";
 import TestimoniSection from "@/components/Layanan/hamil/TestimoniSection";
+import GalleryLayanan from "@/components/Layanan/GalleryLayanan";
+import { getGalleryByService } from "@/lib/gallery";
 
 /* ============================= */
 /* SEO METADATA — FIXED */
@@ -167,7 +169,8 @@ const faqSchema = {
 /* PAGE */
 /* ============================= */
 
-export default function Page() {
+export default async function Page() {
+  const gallery = await getGalleryByService("hamil");
   return (
     <>
       {/* JSON-LD */}
@@ -205,9 +208,10 @@ export default function Page() {
         <DetailPackageSection />
         <TargetSection />
         <TestimoniSection />
+        <GalleryLayanan images={gallery?.images || []} />
 
         {/* 🔥 CITY SEO */}
-        <CityServiceList service="paket-hamil" />
+        <CityServiceList service="paket-ibu-hamil" />
 
         {/* ============================= */}
         {/* RELATED SERVICES — REFACTOR */}
@@ -234,7 +238,7 @@ export default function Page() {
               </Link>
 
               <Link
-                href="/layanan/perawatan-nifas"
+                href="/layanan/paket-nifas"
                 className="btn-outline"
               >
                 Perawatan Nifas
@@ -248,14 +252,12 @@ export default function Page() {
               </Link>
 
               <Link
-                href="/layanan/infus-rumah"
+                href="/layanan/jasa-infus-rumah"
                 className="btn-outline"
               >
                 Infus ke Rumah
               </Link>
-
             </div>
-
           </div>
         </section>
 

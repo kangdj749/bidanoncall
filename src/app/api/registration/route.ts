@@ -7,13 +7,12 @@ export const runtime = "nodejs";
 const RANGE = "client!A:H";
 
 type RegistrationBody = {
-  fullName: string;
-  instansi?: string;
-  jenis_proyek?: string;
-  lokasi_proyek?: string;
-  deskripsi_singkat?: string;
-  phone?: string;
-  
+   
+  name: string;
+  phone: string;
+  address: string;
+  service: string;
+  message: string;
 };
 
 export async function POST(req: Request) {
@@ -21,39 +20,32 @@ export async function POST(req: Request) {
     const body: RegistrationBody = await req.json();
 
     const {
-      fullName,
-      instansi,
-      jenis_proyek,
-      lokasi_proyek,
-      deskripsi_singkat,
+      name,
       phone,
+      address,
+      service,
+      message,
      
     } = body;
 
-    if (!fullName)
+    if (!name)
       return NextResponse.json({ error: "Nama wajib diisi" }, { status: 400 });
 
-    if (!instansi)
-      return NextResponse.json({ error: "Instansi wajib diisi" }, { status: 400 });
-
     if (!phone)
-      return NextResponse.json(
-        { error: "Nomor telepon wajib diisi" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "No Telepon wajib diisi" }, { status: 400 });
 
+    
     const id = nanoid(10);
     const createdAt = new Date().toISOString();
 
     const row: (string | number)[] = [
       id,
       createdAt,
-      fullName,
-      instansi ?? "",
-      jenis_proyek ?? "",
-      lokasi_proyek ?? "",
-      deskripsi_singkat ?? "",
+      name,
       phone,
+      address,
+      service,
+      message,
     ];
 
     const sheets = getSheetsClient();

@@ -33,7 +33,7 @@ export const menuItems: MenuItem[] = [
       // Core services
       {
         label: "Paket Ibu Hamil",
-        href: "/layanan/paket-hamil",
+        href: "/layanan/paket-ibu-hamil",
       },
       {
         label: "Doula Persalinan",
@@ -48,8 +48,8 @@ export const menuItems: MenuItem[] = [
         href: "/layanan/perawatan-bayi",
       },
       {
-        label: "Jasa Infus",
-        href: "/layanan/jasa-infus",
+        label: "Jasa Infus Rumah",
+        href: "/layanan/jasa-infus-rumah",
       },
     ],
   },

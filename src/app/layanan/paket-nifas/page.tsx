@@ -7,6 +7,10 @@ import ProblemNifas from "@/components/Layanan/nifas/ProblemNifas";
 import SolutionNifas from "@/components/Layanan/nifas/SolutionNifas";
 import ServiceListNifas from "@/components/Layanan/nifas/ServiceListNifas";
 import CTANifas from "@/components/Layanan/nifas/CTANifas";
+import GalleryLayanan from "@/components/Layanan/GalleryLayanan";
+import { getGalleryByService } from "@/lib/gallery";
+import CityServiceList from "../LinkCitySection";
+import Link from "next/link";
 
 /* ============================= */
 /* SEO */
@@ -73,7 +77,8 @@ const serviceSchema = {
     "Layanan perawatan nifas di rumah meliputi pijat nifas, pijat laktasi, perawatan luka, dan konsultasi.",
 };
 
-export default function Page() {
+export default async function Page() {
+  const gallery = await getGalleryByService("nifas");
   return (
     <>
       <script
@@ -86,7 +91,63 @@ export default function Page() {
         <ProblemNifas />
         <SolutionNifas />
         <ServiceListNifas />
+        <GalleryLayanan images={gallery?.images || []} />
+        {/* 🔥 CITY SEO */}
+        <CityServiceList service="paket-nifas" />
+
+        {/* ============================= */}
+        {/* RELATED SERVICES — REFACTOR */}
+        {/* ============================= */}
+        <section className="section-tight bg-[rgb(var(--color-soft))]">
+          <div className="container-main space-y-4">
+
+            <div className="max-w-[520px] space-y-2">
+              <h3 className="h3 text-[rgb(var(--color-dark))]">
+                Layanan Terkait
+              </h3>
+              <p className="caption">
+                Pilihan layanan lain untuk mendukung kesehatan ibu & bayi
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-3">
+
+              <Link
+                href="/layanan/doula-persalinan"
+                className="btn-outline"
+              >
+                Doula Persalinan
+              </Link>
+
+              
+
+              <Link
+                href="/layanan/perawatan-bayi"
+                className="btn-outline"
+              >
+                Perawatan Bayi
+              </Link>
+
+              <Link
+                href="/layanan/jasa-infus-rumah"
+                className="btn-outline"
+              >
+                Infus ke Rumah
+              </Link>
+
+              <Link
+                      href="/layanan/paket-ibu-hamil"
+                      className="btn-outline"
+                    >
+                      Paket Ibu Hamil
+                    </Link>
+                  </div>
+                </div>
+              </section>
+
         <CTANifas />
+
+        
       </main>
     </>
   );
