@@ -13,22 +13,22 @@ type Testimonial = {
 export default function TestimonialSection() {
   const testimonials: Testimonial[] = [
     {
-      name: "Ibu Rina",
+      name: "Siti Kamilaini Harjana",
       city: "Bandung",
-      image: "https://res.cloudinary.com/demo/image/upload/mother1.jpg",
-      text: "Pelayanan bidannya sangat ramah dan profesional. Saya merasa lebih tenang menjalani masa nifas karena ada pendampingan langsung di rumah.",
+      image: "https://res.cloudinary.com/de7fqcvpf/image/upload/v1777540275/sit_ekw6kc.png",
+      text: "Pertama kali punya baby, mau cari tempat cukur dan tindik bayi yg bisa ke rmh dan harga terjangkau. Searching di ig, ketemu sama bidanoncall, baik dan ramah juga, seneng deh sampe akhirnya manggil lg untuk massage baby. Alhamdulillah anakku sehat lg setelah di massage bu bidan baik hati. Aku mau rekomendasiin ini ke temen. Jazakillah bu bidan. Nanti kalo punya baby lg pasti panggil lg 💕",
     },
     {
-      name: "Ibu Sari",
+      name: "Mansyur Saldi",
       city: "Bandung",
-      image: "https://res.cloudinary.com/demo/image/upload/mother2.jpg",
-      text: "Sangat membantu sekali, terutama untuk perawatan bayi baru lahir. Bidannya sabar dan memberikan banyak edukasi untuk kami sebagai orang tua baru.",
+      image: "https://res.cloudinary.com/de7fqcvpf/image/upload/v1777540273/mansyur_laojsc.png",
+      text: "Maa syaa Allah, kayak nya bintang 5 kurang deh untuk gambarin rasa syukur dan terima kasih saya atas pendampingan Bu bidan yang luar biasa untuk saya dari mulai pra lahir, proses lahiran dan pasca lahiran. Jangan ragu untuk bunda-bunda yang mau lahiran dengan pendampingan beliau. Best pokok nya",
     },
     {
-      name: "Ibu Maya",
+      name: "Isni Nurul Fadilah",
       city: "Bandung",
-      image: "https://res.cloudinary.com/demo/image/upload/mother3.jpg",
-      text: "Proses booking mudah dan bidan datang tepat waktu. Pelayanannya sangat profesional dan membuat saya merasa lebih nyaman.",
+      image: "https://res.cloudinary.com/de7fqcvpf/image/upload/v1777540273/isni_o3ak5l.png",
+      text: "Bersyukur banget bisa Allah pertemukan dengan bidan Enka, setelah ngubek² nyari di google di IG buat homecare yg bisa perawatan newborn selama sepekan dan ternyata rumahnya bubid deket banget di Cipamokolan 😃 Salah satu point plus perawatan di bidan Enka itu segala aktivitas yang dilakukan selalu diselipkan dialog tauhid kepada dede Bassam, seperti ketika memandikan, menjemur, nyisir rambut dll.Jadi ada banyangan berdialog dengan bayi untuk memperkenalkan Allah lebih awal.Paket newborn bayi laki² selama sepekan hari kerja (6 hari) biayanya 900rb, ini terhitung murah dibandingkan homecare yang lain dengan benefit yang banyak.",
     },
   ];
 
