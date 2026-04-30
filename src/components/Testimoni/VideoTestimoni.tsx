@@ -22,7 +22,7 @@ export default function VideoTestimoni() {
             >
               <iframe
                 src={src}
-                className="w-full h-[220px] md:h-[260px]"
+                className="h-full w-[420px] md:h-[460px]"
                 allowFullScreen
               />
             </div>
