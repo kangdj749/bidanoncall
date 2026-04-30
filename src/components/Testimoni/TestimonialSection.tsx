@@ -1,47 +1,39 @@
-// components/TestimonialSection.tsx
-
 import { getTestimonials } from "@/lib/review";
+import type { TestimonialItem } from "@/types/review";
+
 import RatingSummary from "./RatingSummary";
 import VideoSlider from "./VideoSlider";
 import ReviewSlider from "./ReviewSlider";
 import ProofGallery from "./ProofGallery";
 
 export default async function TestimonialSection() {
-  const data = await getTestimonials();
+  const data: TestimonialItem[] = await getTestimonials(); // ✅ kasih type jelas
 
-  /* ================= FILTER DATA ================= */
-
+  /* ================= VIDEO ================= */
   const videos: string[] = data
-  .filter((i) => i.type === "video" && i.video_url)
-  .map((i) => (i.video_url as string).trim())
-  .filter((url) => url !== "" && url !== "-");
+    .filter((i: TestimonialItem) => i.type === "video" && i.video_url)
+    .map((i: TestimonialItem) => (i.video_url as string).trim())
+    .filter((url: string) => url !== "" && url !== "-");
 
+  /* ================= REVIEW ================= */
   const reviews = data
-    .filter((i) => i.type === "review" && i.text)
-    .map((i) => ({
+    .filter((i: TestimonialItem) => i.type === "review" && i.text)
+    .map((i: TestimonialItem) => ({
       name: i.name || "Pasien",
       text: i.text as string,
       rating: i.rating ?? 5,
     }));
 
+  /* ================= IMAGE ================= */
   const images: string[] = data
-    .filter((i) => i.type === "image" && i.image_url)
-    .map((i) => i.image_url as string);
-
-  /* ================= RATING CALC ================= */
+    .filter((i: TestimonialItem) => i.type === "image" && i.image_url)
+    .map((i: TestimonialItem) => (i.image_url as string).trim());
 
   const total = reviews.length;
-
   const rating =
-    total > 0
-      ? Number(
-          (
-            reviews.reduce((acc, cur) => acc + (cur.rating || 5), 0) / total
-          ).toFixed(1)
-        )
+    reviews.length > 0
+      ? reviews.reduce((acc, r) => acc + (r.rating ?? 5), 0) / reviews.length
       : 5;
-
-  /* ================= RENDER ================= */
 
   return (
     <section className="section bg-[rgb(var(--color-bg))]">
@@ -54,24 +46,23 @@ export default async function TestimonialSection() {
           </h2>
 
           <p className="caption max-w-[520px] mx-auto">
-            Ribuan pengalaman nyata dari ibu yang telah menggunakan layanan
-            Bidan On Call. Aman, profesional, dan penuh perhatian.
+            Layanan bidan profesional dengan pengalaman nyata dari pasien.
           </p>
 
           <RatingSummary rating={rating} total={total} />
         </div>
 
-        {/* VIDEO TESTIMONI */}
+        {/* VIDEO */}
         {videos.length > 0 && (
           <VideoSlider videos={videos} />
         )}
 
-        {/* REVIEW TEXT */}
+        {/* REVIEW */}
         {reviews.length > 0 && (
           <ReviewSlider reviews={reviews} />
         )}
 
-        {/* PROOF IMAGE (WA / GOOGLE) */}
+        {/* PROOF */}
         {images.length > 0 && (
           <ProofGallery images={images} />
         )}
